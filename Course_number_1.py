@@ -1,6 +1,9 @@
 #Python version 3.10.2
 
-#Exercise 1 ()
+#Exercise 1 (count chars with tuples)
+
+from time import process_time_ns
+
 
 def exercise1():
     def calculate(phrase):
@@ -25,12 +28,15 @@ def exercise1():
 
 
 
-#Exercicio 2 (numeros 0 a 20)
-def exercicio2():
-    i=-1
-    while i<20:
-        i=i+1
-        print(i)
+#Exercise 2 (numeros 0 a 20)
+def exercise2():
+    tuple = ()
+    count = 10
+    while count > 0:
+        n = int(input("Insert 1 number: "))
+        tuple = tuple + (n,) # turn n in tuple class
+        count-= 1
+    print(tuple)
 
 #Exercicio 3 (divisiveis por 4)
 def exercicio3():
@@ -107,15 +113,10 @@ def exercicio10():
             soma=soma+valor
     print("O numero de pares é %s e a soma é %s" %(par,soma))
 
-'''
-from forex_python.converter import CurrencyRates
-c= CurrencyRates()
-from forex_python.converter import CurrencyRates
-c= CurrencyRates()
-'''
+
 # map the inputs to the function blocks
 options = {1 : exercise1,
-           2 : exercicio2,
+           2 : exercise2,
            3 : exercicio3,
            4 : exercicio4,
            5 : exercicio5,
