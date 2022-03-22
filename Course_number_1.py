@@ -115,7 +115,7 @@ def exercise6():
     print(f"o tuplo resultante é {tuplo}")
 
 #Exercicio 7 ()
-def exercicio7():
+def exercise7():
     cidades = []
 
     for x in range(5):
@@ -124,36 +124,66 @@ def exercicio7():
     
     print("as cidades inseridas foram: {cidades}")
 
-#Exercicio 8 (soma até pelo menos 20)
-def exercicio8():
-    soma=0
-    valor=0
-    while soma<20:
-        valor=int(input("Introduza os valores até aingir pelo menos 20:"))
-        soma=soma+valor
-    print("O valor atingiu igual ou superior a 20")
+#Exercicio 8 ()
+def exercise8():
+    def remover (cidades):
+        delete = input(f"Das seguintes cidades, qual deseja remover? {cidades}")
+        if delete not in cidades:
+            print(f"Não foi possivel remover {delete}")
+        else:
+            cidades.remove(delete)
+            print(f"A nova lista é {cidades}")
+    
+    cidades = ['Porto', 'Braga', 'Aveiro']
+    remover(cidades)
    
-#Exercicio 9 (introduzir password)
-def exercicio9():
-    password=0
-    while password != 1234:
-        password=int(input("Introduza a password:"))
-        if password != 1234:
-            print("A password está errada, introduza novamente.")
-    print("A password está correta")
+#Exercicio 9 ()
+def exercise9():
+    def trocar(cidades, sai, entra):
+        i=0
+        while i < len(cidades):
+            if cidades[i] == sai:
+                cidades[i] = entra
+                return cidades
+            i += 1
+        return f"Não foi possivel substituir {sai} por {entra}"
 
+    cidades = ['Porto', 'Braga', 'Aveiro']
+    print(f"Cidades disponiveis: {cidades}")
+    sai = input("Qual a cidade que deseja substituir? ").title().strip()
+    entra = input(f"Qual a cidade que substitui {sai} ").title().strip()
 
-#Exercicio 10 (soma e contagem pares)
-def exercicio10():
-    par=0
-    valor=0
-    soma=0
-    while (valor%2) == 0:
-        valor=int(input("Introduza os valores a somar (pares):"))
-        if (valor>0):
-            par=par+1
-            soma=soma+valor
-    print("O numero de pares é %s e a soma é %s" %(par,soma))
+    novalista = trocar(cidades, sai, entra)
+    print(f"A lista de cidades resultante é {novalista}")
+
+#Exercicio 10 (include 10, 11 and 12 exercise all in one)
+def exercise10():
+    fruits = ['Laranja', 'Banana', 'Morango', 'Pera', 'Pessego']
+    qt = len(fruits)
+    print(f"Existem {qt} espécies de frutos registados, sendo eles: ")
+    for fruit in fruits:
+        print(fruit)
+    
+    new = input("Adicione um novo fruto: ")
+    if new not in fruits: # se ainda nao existir na lista o fruto novo
+        fruits.append(new)
+    
+    for fruit in fruits:
+        print(fruit)
+
+#Exercicio 11 ()
+def exercise11():
+    fruits = ['Laranja', 'Banana', 'Morango', 'Pera', 'Pessego']
+    rem = input("Qual o fruto que deseja remover da lista? ")
+    if rem not in fruits:
+        print(f"Não é possive remover o fruto {rem} da lista {fruits}")
+    else:
+        for f in fruits:
+            print("Peguei na peça {f}")
+            input()
+            if f == rem:
+                fruits.remove(rem)
+                print(fruits, f)
 
 
 # map the inputs to the function blocks
@@ -163,10 +193,11 @@ options = {1 : exercise1,
            4 : exercise4,
            5 : exercise5,
            6 : exercise6,
-           7 : exercicio7,
-           8 : exercicio8,
-           9 : exercicio9,
-           10 : exercicio10,
+           7 : exercise7,
+           8 : exercise8,
+           9 : exercise9,
+           10 : exercise10,
+           11: exercise11,
 }
 
 num=int(input("Insert exercise number: "))
