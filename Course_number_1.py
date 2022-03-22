@@ -51,7 +51,6 @@ def exercise3():
         t3 = t3 + (sum,) # (7,5)
         i+=1
 
-
 #Exercise 4 
 def exercise4():
     def convert(list):
@@ -95,26 +94,35 @@ def exercise5():
     else:
         print(f"Não existem elementos primos no tuplo {tuplo}")
 
-#Exercicio 6 (soma apenas positivos)
-def exercicio6():
-    soma=0
-    for x in range(5):
-        valor=int(input("Introduza o valor a somar:"))
-        if (valor>0):
-            soma=soma+valor
-    print("A soma dos positivos é %s" %soma)
+#Exercicio 6 ()
+def exercise6():
+    def substituir (tuplo, sai, entra):
+        t=()
+        for elem in tuplo:
+            if elem != sai:
+                t= t + (elem,)
+            else:
+                t = t +(entra,)
+        return t
     
-#Exercicio 7 (quantidade de pares/impares)
+    
+    tuplo = (9,3,7,199,6,11)
+    print (f"Tuplo -> {tuplo}")
+    sai = int(input("qual o valor a substituir? "))
+    entra = int(input(f"Qual o valor que ira susbtituir? "))
+
+    resp= substituir(tuplo,sai, entra)
+    print(f"o tuplo resultante é {tuplo}")
+
+#Exercicio 7 ()
 def exercicio7():
-    par=0
-    impar=0
+    cidades = []
+
     for x in range(5):
-        valor=int(input("Introduza os valores:"))
-        if (valor%2) == 0:
-            par=par+1
-        elif (valor%2) != 0:
-            impar=impar+1
-    print("O numero de pares é %s e o número de impares é %s" %(par,impar))
+        nome = input("indique o nome de uma cidade: ")
+        cidades = cidades + [nome] #cidades.append(nome)
+    
+    print("as cidades inseridas foram: {cidades}")
 
 #Exercicio 8 (soma até pelo menos 20)
 def exercicio8():
@@ -154,7 +162,7 @@ options = {1 : exercise1,
            3 : exercise3,
            4 : exercise4,
            5 : exercise5,
-           6 : exercicio6,
+           6 : exercise6,
            7 : exercicio7,
            8 : exercicio8,
            9 : exercicio9,
