@@ -28,7 +28,7 @@ def exercise1():
 
 
 
-#Exercise 2 (numeros 0 a 20)
+#Exercise 2 
 def exercise2():
     tuple = ()
     count = 10
@@ -38,29 +38,63 @@ def exercise2():
         count-= 1
     print(tuple)
 
-#Exercicio 3 (divisiveis por 4)
-def exercicio3():
+#Exercise 3 
+def exercise3():
+    t1 = (2,5,3)
+    t2 = (5,0,2)
+    t3 = ()
+
+    qt = len(t1)
     i=0
-    while i<100:
-        i=i+1
-        if (i%4) == 0:
-            print(i)
+    while i < qt:
+        sum=t1[i] + t2[i] # 2 + 5 
+        t3 = t3 + (sum,) # (7,5)
+        i+=1
 
-#Exercicio 4 (tabuada)
-def exercicio4():
-    tab=int(input("Insira qual a tabuáda pretende): "))
-    for x in range(10):
-        x=x+1
-        resultado=tab*x
-        print("%s x %s = %s"%(tab,x,resultado))
 
-#Exercicio 5 (Matriz *)
-def exercicio5():
-    num=int(input("Insira nº de asteriscos (quadrado/matriz): "))
-    for x in range(num): #controla a alteraçao da linha
-        for y in range(num): #controla a construçao da linha
-            print(end="*")
-        print("")
+#Exercise 4 
+def exercise4():
+    def convert(list):
+        return tuple(i for i in list)
+
+    def str_comuns(st1,st2):
+        len_s1= len(st1)
+        len_s2= len(st2)
+        result =[]
+        for a in range(len_s1):
+            for b in range(a+1,len_s2):
+                if st1[a]==st2[b]:
+                    result.append(st1[a])
+        return convert(result)
+
+
+    r = str_comuns("2Luis","22tLuisattt")
+    print(r)
+
+#Exercicio 5 (Numeros primos)
+def exercise5():
+    def ver_primo(t):
+        primo = () # guardar os numeros primos que encontrar
+        
+        for elem in t:
+            qtdiv = 0
+            x=1
+
+            while x <= elem:
+                if ((elem %x)==0): #x e o divisor
+                    qtdiv +=1
+            if qtdiv ==2: # se tiver 2 entao guarda o elem no tuplo do primos
+                primo = primo + (elem,) # concatenar tuplos
+        return primo
+
+    tuplo = (9,3,7,199,6,11)
+    resp = ver_primo(tuplo) #tuplo (n1, n2, ... ,nn)
+
+    if len(resp) > 0:
+        print(f"Do tuplo inicial {resp} os primos são {resp}")
+    else:
+        print(f"Não existem elementos primos no tuplo {tuplo}")
+
 #Exercicio 6 (soma apenas positivos)
 def exercicio6():
     soma=0
@@ -117,9 +151,9 @@ def exercicio10():
 # map the inputs to the function blocks
 options = {1 : exercise1,
            2 : exercise2,
-           3 : exercicio3,
-           4 : exercicio4,
-           5 : exercicio5,
+           3 : exercise3,
+           4 : exercise4,
+           5 : exercise5,
            6 : exercicio6,
            7 : exercicio7,
            8 : exercicio8,
