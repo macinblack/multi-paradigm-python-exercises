@@ -1,32 +1,12 @@
 #Python version 3.10.2
 
-#Exercise 1 (count chars with tuples)
-
-from time import process_time_ns
-
+#Exercise 1 (read file)
 
 def exercise1():
-    def calculate(phrase):
-        qtm,qtM,qtd=0,0,0
-
-        for symbol in phrase:
-            if symbol.islower():
-                qtm = qtm + 1
-            elif symbol.isupper():
-                qtM = qtM + 1
-            elif '0' <= symbol <= '9':
-                qtd= qtd + 1
-
-        return(qtm,qtM,qtd)
- 
-
-    phrase=input("Insira a frase: ")
-    ans=calculate(phrase) 
-    print(f"Quantidade de minúsculas: {ans[0]}")
-    print(f"Quantidade de maiúsculas: {ans[1]}")
-    print(f"Quantidade de digitos: {ans[2]}") # fix
-
-
+    name = "dados.txt"
+    file = open(name, "r", encoding="UTF-8-SIG")
+    contain = file.read()  
+    print(contain)
 
 #Exercise 2 
 def exercise2():
