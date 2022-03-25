@@ -200,5 +200,5 @@ options = {1 : exercise1,
            11: exercise11,
 }
 
-num=int(input("Insert exercise number: "))
+num=int(input("Insira o número do exercicio: "))
 options[num]()
