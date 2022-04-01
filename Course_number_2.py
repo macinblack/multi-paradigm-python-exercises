@@ -1,169 +1,179 @@
-#Python version 3.10.2
+#Python version 3.10.4
 
-#Exercise 1 (read file)
+#Exercise 1 (write file)
 
 def exercise1():
-    name = "dados.txt"
-    file = open(name, "r", encoding="UTF-8-SIG")
-    contain = file.read()  
-    print(contain)
+
+    name= input("Insira nome: ")
+    file = open("dados.txt", "w", encoding="UTF-8-SIG")
+    file.write(name)
+    file.close()
 
 #Exercise 2 
 def exercise2():
-    tuple = ()
-    count = 10
-    while count > 0:
-        n = int(input("Insert 1 number: "))
-        tuple = tuple + (n,) # turn n in tuple class
-        count-= 1
-    print(tuple)
+    def check_name(name1,name2):
+        
+        pos = name1.rfind('.')#devolve a posiçao do ponto a partir da direita
+        name1 = name1[0:pos] #i
+
+        pos = name2.rfind('.')
+        name1 = name2[0:pos]
+
+        name3 = name1 + '__' + name2 + '.txt'
+        return name3
+
+    def join_file(name1, name2):
+        file1 = open(name1, "r")#apontador para o ficheiro
+        file2 = open(name2, "r")
+
+        cont1, cont2 = 0
+
+        cont1 = file1.read()#obtem conteudo e le como string
+        cont2 = file2.read()
+
+        file1.close()#fecha apontador
+        file2.close()
+
+        if cont1[-1] != '\n':
+            cont1 = cont1 +'\n'
+
+        cont3 = cont1 + cont2 #contatena as strings
+
+        name3 = check_name(name1, name2)
+
+        file3= open("saida.txt", "w")
+        file3.write(cont3)
+        file3.close()
+    
+
+    name1 = input("Insira o nome do 1º ficheiro: ")
+    name2 = input("Insira o nome do 2º ficheiro: ")
+
+    join_file(name1, name2)
 
 #Exercise 3 
 def exercise3():
-    t1 = (2,5,3)
-    t2 = (5,0,2)
-    t3 = ()
+    nome = input("insira o nome do 1º ficheiro: ")
+    pal = input("Qual a palavra a procurar? ")
 
-    qt = len(t1)
-    i=0
-    while i < qt:
-        sum=t1[i] + t2[i] # 2 + 5 
-        t3 = t3 + (sum,) # (7,5)
-        i+=1
+    fich = open(nome, "r")
+    cont = fich.read()
+    fich.close()
 
+    qt = cont.count(pal)
+
+    if qt == 0:
+        print(f"A palavra {pal} não ocorre no ficheiro.")
+    else:
+        print(f"A palavra {pal} ocorre {qt} vezes no nosso ficheiro.")
+'''
+#Procurar palavra dada
+
+nome = input("insira o nome do 1º ficheiro: ")
+pal = input("Qual a palavra a procurar? ")
+fich = open(nome, "r", encoding="UTF-8")
+cont = fich.readlines() #carrega cada linha para uma lista
+fich.close()
+qt = 0
+for frase in cont: #['Falar é fácil. Mostre-me o código. (Linus Torvalds)\n', ...]
+   listfrase = frase.split() #['Falar', 'é', 'fácil.', 'Mostre-me', 'o', 'código.', '(Linus', 'Torvalds)']
+   for palavra in listfrase:
+      if(pal == palavra):      
+         qt = qt + 1
+      elif(pal in palavra) and (palavra[len(pal)] in ".,!?;:"):  
+            qt = qt+1
+
+#https://www.delftstack.com/pt/howto/python/python-count-words-in-string/
+'''
 #Exercise 4 
 def exercise4():
-    def convert(list):
-        return tuple(i for i in list)
+    fich = open("pensamentos.txt", "r", encoding="UTF-8")
+    cont = fich.read()
+    fich.close()
 
-    def str_comuns(st1,st2):
-        len_s1= len(st1)
-        len_s2= len(st2)
-        result =[]
-        for a in range(len_s1):
-            for b in range(a+1,len_s2):
-                if st1[a]==st2[b]:
-                    result.append(st1[a])
-        return convert(result)
+    print(f"O conteúdo do ficheiro é:\n{cont}")
 
+    #pedir a sequência a substituir
+    seq_sai = input("Qual a sequência a remover? ")
+    seq_entra = input(f"Qual a palavra a substituir {seq_sai}? ")
 
-    r = str_comuns("2Luis","22tLuisattt")
-    print(r)
+    cont = cont.replace(seq_sai, seq_entra)
 
-#Exercicio 5 (Numeros primos)
+    fich = open("pensamentos2.txt", "w", encoding="UTF-8")
+    fich.write(cont)
+    fich.close()
+
+#Exercicio 5 
 def exercise5():
-    def ver_primo(t):
-        primo = () # guardar os numeros primos que encontrar
-        
-        for elem in t:
-            qtdiv = 0
-            x=1
+    fich = open("pensamentos.txt", "r", encoding="UTF-8")
+    cont = fich.read()
+    fich.close()
 
-            while x <= elem:
-                if ((elem %x)==0): #x e o divisor
-                    qtdiv +=1
-            if qtdiv ==2: # se tiver 2 entao guarda o elem no tuplo do primos
-                primo = primo + (elem,) # concatenar tuplos
-        return primo
+    qtlinhas = cont.count('\n')
+    if cont[-1] != '\n':
+        qtlinhas +=1
+  
+    print(f"Nº de linhas: {qtlinhas}")
 
-    tuplo = (9,3,7,199,6,11)
-    resp = ver_primo(tuplo) #tuplo (n1, n2, ... ,nn)
+    listapal = cont.split()
+    print(f"Nº de palavras: {len(listapal)}")
 
-    if len(resp) > 0:
-        print(f"Do tuplo inicial {resp} os primos são {resp}")
-    else:
-        print(f"Não existem elementos primos no tuplo {tuplo}")
+    vogais = "aeiouáàãâéêíóôõú"
+
+    qtvog, qtcons = 0, 0
+    for carater in cont:
+        if carater.lower() in vogais:
+      #print(f"{carater} é vogal")
+            qtvog += 1
+        elif 'a' < carater.lower() <= 'z' or carater.lower() == 'ç':
+      #print(f"{carater} é consoante")
+            qtcons += 1
+
+    print(f"Quantidade de vogais: {qtvog}")
+    print(f"Quantidade de consoantes: {qtcons}")
+
+    cont = cont.split('\n') #conteúdo convertido em lista
+    #print(cont)
+
+    #b
+    qt = 0
+    numlinha = []
+    pal = input("Qual a palavra a procurar? ")
+    for pos, frase in enumerate(cont):
+        if pal in frase:
+        qt = qt + frase.count(pal)
+        numlinha.append(pos+1)
+
+    print(f"A palavra {pal} ocorre {qt} vezes nas linhas {numlinha}")
 
 #Exercicio 6 ()
 def exercise6():
-    def substituir (tuplo, sai, entra):
-        t=()
-        for elem in tuplo:
-            if elem != sai:
-                t= t + (elem,)
-            else:
-                t = t +(entra,)
-        return t
-    
-    
-    tuplo = (9,3,7,199,6,11)
-    print (f"Tuplo -> {tuplo}")
-    sai = int(input("qual o valor a substituir? "))
-    entra = int(input(f"Qual o valor que ira susbtituir? "))
+    fich1 = open("fich1.txt", "r", encoding="UTF-8")
+    cont1 = fich1.readlines() #['Olá mundo.\n', 'Hoje chove.\n']
+    fich1.close()
+    fich2 = open("fich2.txt", "r", encoding="UTF-8")
+    cont2 = fich2.readlines() #['Amanhã fará sol.','Palavra.\n']
+    fich2.close()
+    fich3 = open("final.txt", "w", encoding="UTF-8")
 
-    resp= substituir(tuplo,sai, entra)
-    print(f"o tuplo resultante é {tuplo}")
+    #última frase, último carater, acrescentar \n
+    if cont1[-1][-1] != '\n': #'Hoje chove.\n'
+        cont1[-1] = cont1[-1] + '\n'
 
-#Exercicio 7 ()
-def exercise7():
-    cidades = []
+    #1ªfrase, eliminar \n pois será a última a ser acrescentada
+    if cont2[0][-1] == '\n': #'Amanhã fará sol.'
+        cont2[0] = cont2[0].replace('\n','')
 
-    for x in range(5):
-        nome = input("indique o nome de uma cidade: ")
-        cidades = cidades + [nome] #cidades.append(nome)
-    
-    print("as cidades inseridas foram: {cidades}")
-
-#Exercicio 8 ()
-def exercise8():
-    def remover (cidades):
-        delete = input(f"Das seguintes cidades, qual deseja remover? {cidades}")
-        if delete not in cidades:
-            print(f"Não foi possivel remover {delete}")
-        else:
-            cidades.remove(delete)
-            print(f"A nova lista é {cidades}")
-    
-    cidades = ['Porto', 'Braga', 'Aveiro']
-    remover(cidades)
+    #última frase, último carater, acrescentar \n
+    if cont2[-1][-1] != '\n': #'Palavra.\n'
+        cont2[-1] = cont2[-1] + '\n'
    
-#Exercicio 9 ()
-def exercise9():
-    def trocar(cidades, sai, entra):
-        i=0
-        while i < len(cidades):
-            if cidades[i] == sai:
-                cidades[i] = entra
-                return cidades
-            i += 1
-        return f"Não foi possivel substituir {sai} por {entra}"
+    final = cont1 + cont2[::-1] #as frases do 2º conteudo é invertido
 
-    cidades = ['Porto', 'Braga', 'Aveiro']
-    print(f"Cidades disponiveis: {cidades}")
-    sai = input("Qual a cidade que deseja substituir? ").title().strip()
-    entra = input(f"Qual a cidade que substitui {sai} ").title().strip()
+    fich3.writelines(final)
+    fich3.close()
 
-    novalista = trocar(cidades, sai, entra)
-    print(f"A lista de cidades resultante é {novalista}")
 
-#Exercicio 10 (include 10, 11 and 12 exercise all in one)
-def exercise10():
-    fruits = ['Laranja', 'Banana', 'Morango', 'Pera', 'Pessego']
-    qt = len(fruits)
-    print(f"Existem {qt} espécies de frutos registados, sendo eles: ")
-    for fruit in fruits:
-        print(fruit)
-    
-    new = input("Adicione um novo fruto: ")
-    if new not in fruits: # se ainda nao existir na lista o fruto novo
-        fruits.append(new)
-    
-    for fruit in fruits:
-        print(fruit)
-
-#Exercicio 11 ()
-def exercise11():
-    fruits = ['Laranja', 'Banana', 'Morango', 'Pera', 'Pessego']
-    rem = input("Qual o fruto que deseja remover da lista? ")
-    if rem not in fruits:
-        print(f"Não é possive remover o fruto {rem} da lista {fruits}")
-    else:
-        for f in fruits:
-            print("Peguei na peça {f}")
-            input()
-            if f == rem:
-                fruits.remove(rem)
-                print(fruits, f)
 
 
 # map the inputs to the function blocks
@@ -173,11 +183,6 @@ options = {1 : exercise1,
            4 : exercise4,
            5 : exercise5,
            6 : exercise6,
-           7 : exercise7,
-           8 : exercise8,
-           9 : exercise9,
-           10 : exercise10,
-           11: exercise11,
 }
 
 num=int(input("Insira o número do exercicio: "))
