@@ -7,7 +7,7 @@ def exercise1():
 #Isabel,Coimbra,22,Centro
 
     def elimina(cont):
-   #cont=[ "Ana,Lisboa,22,Centro\n", "Pedro,Porto,45,Norte\n", ... ]
+    #cont=[ "Ana,Lisboa,22,Centro\n", "Pedro,Porto,45,Norte\n", ... ]
         for ind, frase in enumerate(cont):
         novafrase = frase.replace('\n', '')
         cont[ind] = novafrase
@@ -43,7 +43,8 @@ def exercise1():
     print(f"Quantidade de pessoas do centro: {qtC}")
     print(f"Quantidade de pessoas do sul: {qtS}")
 
-
+def exercise2():
+    print(f"Por resolver")
 
 
 
@@ -51,10 +52,7 @@ def exercise1():
 # map the inputs to the function blocks
 options = {1 : exercise1,
            2 : exercise2,
-           3 : exercise3,
-           4 : exercise4,
-           5 : exercise5,
-           6 : exercise6,
+           
 }
 
 num=int(input("Insira o número do exercicio: "))
